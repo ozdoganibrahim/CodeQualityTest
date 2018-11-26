@@ -12,14 +12,14 @@ function Request () {}
 Request.jsonp= function (options)
 {
     window[options.jsonpCallback] = function(data) {
-    delete window[options.jsonpCallback];
+delete window[options.jsonpCallback];
 
-    document.head.removeChild(script);
-        (options.success || fns.noop)(data);
+document.head.removeChild(script);
+    (options.success || fns.noop)(data);
 
-        return data;
-    };
-    var script = document.createElement('script');
+    return data;
+};
+var script = document.createElement('script');
 
     script.src = options.url + (fns.has(options.url, '?') ? '&' : '?') + 'callback=' + options.jsonpCallback;
     document.head.appendChild(script);
